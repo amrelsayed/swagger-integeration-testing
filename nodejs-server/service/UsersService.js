@@ -65,7 +65,7 @@ exports.updateUser = function(body) {
 
 
 /**
- * List of Users
+ * Users List
  *
  * returns Object
  **/

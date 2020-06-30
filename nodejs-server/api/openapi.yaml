@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - Users
-      summary: List of Users
+      summary: Users List
       operationId: UsersList
       responses:
         "200":
