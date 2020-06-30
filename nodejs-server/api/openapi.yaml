@@ -1,0 +1,123 @@
+openapi: 3.0.0
+info:
+  title: Mock Test
+  description: For testing
+  version: "0.1"
+servers:
+- url: https://virtserver.swaggerhub.com/amrelsayed/mock-test/0.1
+  description: SwaggerHub API Auto Mocking
+paths:
+  /users:
+    get:
+      tags:
+      - Users
+      summary: Users List
+      operationId: UsersList
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                - id: 1
+                  name: Samir
+                  email: samir@gmail.com
+                - id: 2
+                  name: Ahmed
+                  email: ahamed@gmail.com
+                x-content-type: application/json
+      x-swagger-router-controller: Users
+    post:
+      tags:
+      - Users
+      summary: Add new user
+      operationId: AddUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+        required: true
+      responses:
+        "201":
+          description: Created Successfully
+        "422":
+          description: Validation exception
+      x-swagger-router-controller: Users
+  /users/{id}:
+    get:
+      tags:
+      - Users
+      summary: Gets a user by ID.
+      operationId: getUserById
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      x-swagger-router-controller: Users
+    delete:
+      tags:
+      - Users
+      summary: Delete user
+      operationId: DeleteUser
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Deleted Successfully
+      x-swagger-router-controller: Users
+components:
+  schemas:
+    User:
+      required:
+      - email
+      - name
+      - password
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        password: password
+        name: name
+        id: 0
+        email: email
+    body:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Jessica Smith
+        email:
+          type: string
+          example: Jessica@gmail.com
+        password:
+          type: string
+          example: "123456789"
