@@ -33,6 +33,16 @@ module.exports.getUserById = function getUserById (req, res, next, id) {
     });
 };
 
+module.exports.updateUser = function updateUser (req, res, next, body) {
+  Users.updateUser(body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.usersList = function usersList (req, res, next) {
   Users.usersList()
     .then(function (response) {

@@ -2,9 +2,9 @@
 
 
 /**
- * Add new user
+ * Create new user
  *
- * body Body 
+ * body Body_1 
  * no response value expected for this operation
  **/
 exports.addUser = function(body) {
@@ -52,7 +52,20 @@ exports.getUserById = function(id) {
 
 
 /**
- * Users List
+ * Update an existing user
+ *
+ * body Body  (optional)
+ * no response value expected for this operation
+ **/
+exports.updateUser = function(body) {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+}
+
+
+/**
+ * List of Users
  *
  * returns Object
  **/

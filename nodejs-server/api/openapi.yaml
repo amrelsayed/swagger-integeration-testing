@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - Users
-      summary: Users List
+      summary: List of Users
       operationId: UsersList
       responses:
         "200":
@@ -29,16 +29,34 @@ paths:
                   email: ahamed@gmail.com
                 x-content-type: application/json
       x-swagger-router-controller: Users
-    post:
+    put:
       tags:
       - Users
-      summary: Add new user
-      operationId: AddUser
+      summary: Update an existing user
+      operationId: updateUser
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/body'
+      responses:
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: User not found
+        "405":
+          description: Validation exception
+      x-swagger-router-controller: Users
+    post:
+      tags:
+      - Users
+      summary: Create new user
+      operationId: AddUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_1'
         required: true
       responses:
         "201":
@@ -110,6 +128,21 @@ components:
         id: 0
         email: email
     body:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Jessica Smith
+        email:
+          type: string
+          example: Jessica@gmail.com
+        password:
+          type: string
+          example: "123456789"
+    body_1:
       type: object
       properties:
         name:
